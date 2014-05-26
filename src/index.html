@@ -1,0 +1,45 @@
+<!DOCTYPE html>{% autoescape true %}
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Simple NLP</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    </head>
+    
+    <body>
+<div class="container">
+{% for greeting in greetings %} {% if greeting.author %} <b>{{ greeting.author.nickname() }}</b> wrote: {% else %} An anonymous person wrote: {% endif %}
+        <blockquote>{{ greeting.content }}</blockquote>{% endfor %}
+            <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+		<div .class="form-group">
+			<div>
+			    <textarea name="content" class="form-control" rows="3"></textarea>
+			</div>
+			<div>
+			    <input type="submit" class="btn btn-default" value="Sign Guestbook">
+			</div>
+		</div>
+            </form>
+        <hr>
+        <form class="form-inline">Guestbook name:
+		<div class="form-group">
+		    <input value="{{ guestbook_name }}" class="form-control" name="guestbook_name">
+		    <input type="submit" class="btn btn-default" value="switch">
+		</div>
+        </form> <a href="{{ url|safe }}">{{ url_linktext }}</a>
+
+</div> <!-- container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html>{% endautoescape %}
